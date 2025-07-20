@@ -8,7 +8,6 @@ import TreeJS from './components/header.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
-    <TroisD />
     < TreeJS />
   </StrictMode>,
 )
