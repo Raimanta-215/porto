@@ -1,21 +1,21 @@
 import { useEffect } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-
+import gsap from 'gsap';
   
  function TreeJS() { 
 
   useEffect(() => {
 
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 1000 );
+  const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
   const renderer = new THREE.WebGLRenderer();
   renderer.setSize( window.innerWidth, window.innerHeight );
   document.body.appendChild( renderer.domElement );
   
  
-  camera.position.set(3, 3, 2);
+  camera.position.set(3, 2, 1);
     const dir = new THREE.Vector3(-0.9, -0.32, -0.71).normalize();
 
     const target = new THREE.Vector3().addVectors(camera.position, dir);
@@ -70,7 +70,7 @@ document.addEventListener("click", (event) => {
   const raycaster = new THREE.Raycaster();
   raycaster.setFromCamera(mouse, camera);
 
-  const intersects = raycaster.intersectObjects(scene.children, true);
+  const intersects = raycaster.intersectObjects(clickableMeshes, true);
   if (!intersects.length) return; // rien cliqué
  console.log("Intersects:", intersects);
   // 3. Trouver uniquement "Cube015"
@@ -78,6 +78,8 @@ document.addEventListener("click", (event) => {
   if (!hit) return; // tu n'as pas cliqué sur Cube015
 
   const obj = hit.object;
+
+
 
   // 4. Récupérer la position monde du mesh cliqué
   const pos = obj.getWorldPosition(new THREE.Vector3());
@@ -91,11 +93,21 @@ document.addEventListener("click", (event) => {
   const forwardWorld = forward.applyQuaternion(obj.getWorldQuaternion(new THREE.Quaternion()));
 
   // Position caméra = devant + un peu en hauteur
-  camera.position.copy(pos.clone().add(forwardWorld.multiplyScalar(distance)));
-  camera.position.y += height;
+  const targetPos = pos.clone().add(forwardWorld.multiplyScalar(distance));
+  targetPos.y += height;
 
   // 6. Regarder le centre exact du mesh
-  camera.lookAt(pos);
+ // camera.lookAt(pos);
+   gsap.to(camera.position, {
+    x: pos.x,
+    y: pos.y ,
+    z: pos.z ,
+    duration: 1.5,
+  ease  : "power2.inOut",
+  onUpdate: () => {
+      camera.lookAt(pos);
+    }
+  });
 });
 
 
