@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div id="canvas-container"></div>
+
+    <nav class="cyber-nav">
+        <div class="brand">
+            <i data-lucide="terminal" class="text-emerald"></i>
+            <h1>PORTFOL.IO_V4</h1>
+        </div>
+        <button class="cv-btn"><i data-lucide="download"></i> CV_RECOVERY.EXE</button>
+    </nav>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-text">
+                <div class="system-tag"><span>SYSTEM://</span>OVERVIEW</div>
+                <h2 class="glitch-title">DÉVELOPPEUR_<br>&_VISIONNAIRE.</h2>
+                <p class="hero-desc">Bachelor en Technologie de l'Informatique - <span class="text-emerald">EPHEC</span>...</p>
+            </div>
+            <div class="radar-container">
+                <div class="radar-circle">
+                    <div class="radar-beam"></div>
+                    <i data-lucide="terminal" class="radar-icon"></i>
+                </div>
+            </div>
+        </section>
+
+        <section class="activities-section">
+            <div class="section-header">
+                <h2>./LOG_ACTIVITÉS_ACQUISITION</h2>
+            </div>
+            <div id="themes-grid" class="themes-grid"></div>
+        </section>
+    </main>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>

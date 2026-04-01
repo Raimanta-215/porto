@@ -1,0 +1,144 @@
+:root {
+    --bg-color: #020617;
+    --emerald: #10b981;
+    --slate-400: #94a3b8;
+    --slate-900: #0f172a;
+    --border: #1e293b;
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg-color);
+    color: var(--slate-400);
+    font-family: 'Courier New', Courier, monospace; /* Font Mono */
+    line-height: 1.6;
+}
+
+#canvas-container {
+    position: fixed;
+    top: 0; left: 0; z-index: -1;
+}
+
+.content-wrapper {
+    padding: 3rem 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.brutalist-btn {
+    background: transparent;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    color: var(--emerald);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+    margin-bottom: 3rem;
+}
+
+.brutalist-btn:hover {
+    background: rgba(16, 185, 129, 0.1);
+    color: white;
+}
+
+.terminal-card {
+    border: 1px solid var(--border);
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.status-bar {
+    border-bottom: 1px solid var(--border);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(15, 23, 42, 0.5);
+}
+
+.title-text { color: white; font-weight: bold; text-transform: uppercase; }
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.label { font-size: 0.65rem; text-transform: uppercase; margin-bottom: 0.25rem; font-style: italic; }
+.value { color: white; font-weight: bold; margin: 0; }
+.text-emerald { color: var(--emerald); }
+
+.section-title {
+    color: var(--emerald);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.italic-border {
+    border-left: 2px solid #1e293b;
+    padding-left: 1.5rem;
+    font-style: italic;
+}
+
+.reflexion-box {
+    background: rgba(16, 185, 129, 0.05);
+    border: 1px solid rgba(16, 185, 129, 0.1);
+    padding: 2rem;
+}
+
+/* Grille de thèmes */
+.themes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1px; /* Pour l'effet de bordure fine entre les cartes */
+    background-color: #1e293b; /* Couleur de la bordure */
+    border: 1px solid #1e293b;
+}
+
+.theme-card {
+    background: #020617;
+    padding: 2.5rem;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.theme-card:hover {
+    background: rgba(16, 185, 129, 0.05);
+}
+
+.theme-card::after { /* L'effet de bordure active au survol */
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    height: 2px; width: 0;
+    background: #10b981;
+    transition: width 0.5s ease;
+    box-shadow: 0 0 10px #10b981;
+}
+
+.theme-card:hover::after { width: 100%; }
+
+/* Animation Radar */
+.radar-beam {
+    position: absolute;
+    top: 0; left: 50%;
+    width: 2px; height: 50%;
+    background: linear-gradient(to bottom, #10b981, transparent);
+    transform-origin: bottom;
+    animation: spin 8s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
