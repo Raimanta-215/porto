@@ -8,7 +8,7 @@ scene.background = new THREE.Color(0x111111);
 
 export const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 // Essaye ces valeurs pour être "dans" la chambre et voir le sol
-camera.position.set(5, 5, 5); 
+camera.position.set(-15, 10, -20); 
 // Force la caméra à regarder le centre de la pièce
 camera.lookAt(0, 0, 0);
 

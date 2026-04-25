@@ -31,7 +31,7 @@ export function setupInteractions(scene, camera) {
                 targetMesh.getWorldPosition(targetPos);
 
                 // ✅ On met à jour les propriétés de l'objet exporté
-                cameraMovement.target = new THREE.Vector3(targetPos.x - 10, targetPos.y , targetPos.z + 3);
+                cameraMovement.target = new THREE.Vector3(targetPos.x - 2, targetPos.y + 1 , targetPos.z - 1);
                 cameraMovement.lookAt.copy(targetPos);
             }
         }
