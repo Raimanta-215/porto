@@ -1,17 +1,29 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
+// 1. On importe le DRACOLoader
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
 export function loadRoomAndEnvironment(scene, camera, renderer) {
-    // 1. Charger le HDR
     const rgbeLoader = new RGBELoader();
+    // Attention au chemin : comme ton index.html est à la racine, 'river_alcove_1k.hdr' suffit
     rgbeLoader.load('river_alcove_1k.hdr', (texture) => {
         texture.mapping = THREE.EquirectangularReflectionMapping;
-        scene.environment = texture;
+        
+        scene.environment = texture; // Éclaire la scène
+        scene.background = texture;  // <-- RAJOUTE CETTE LIGNE pour voir l'image derrière
+        
+        console.log("HDRI rechargé !");
     });
+    // 2. On prépare le décodeur Draco
+    const dracoLoader = new DRACOLoader();
+    // On lui donne le lien vers les fichiers de décodage (la même version 0.160.0 que ton Three.js)
+    dracoLoader.setDecoderPath('https://unpkg.com/three@0.160.0/examples/jsm/libs/draco/');
 
-    // 2. Charger la chambre
     const loader = new GLTFLoader();
+    // 3. On attache le décodeur au GLTFLoader
+    loader.setDRACOLoader(dracoLoader);
+
     loader.load('Chambre.glb', (gltf) => {
         const room = gltf.scene;
         
@@ -28,7 +40,6 @@ export function loadRoomAndEnvironment(scene, camera, renderer) {
 
         scene.add(room);
         
-        // Compilation et fin du chargement
         renderer.compile(scene, camera);
         const loadingScreen = document.getElementById('loading-screen');
         if (loadingScreen) {
@@ -37,3 +48,4 @@ export function loadRoomAndEnvironment(scene, camera, renderer) {
         }
     });
 }
+

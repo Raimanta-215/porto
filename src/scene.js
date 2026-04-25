@@ -8,7 +8,7 @@ export const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window
 camera.position.set(5, 5, 5);
 
 export const renderer = new THREE.WebGLRenderer({ antialias: false });
-const pixelScale = 0.35;
+const pixelScale = 1;
 renderer.domElement.style.width = '100vw';
 renderer.domElement.style.height = '100vh';
 renderer.domElement.style.imageRendering = 'pixelated';
@@ -16,6 +16,12 @@ renderer.setSize(window.innerWidth * pixelScale, window.innerHeight * pixelScale
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 document.body.appendChild(renderer.domElement);
+
+
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.2; // Monte à 2.0 ou 3.0 si tout est trop sombre !
+
 
 // Lumières
 const ambientLight = new THREE.AmbientLight(0x404040, 0.5); 
