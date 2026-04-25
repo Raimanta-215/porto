@@ -3,44 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Dashboard</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <title>Ma Chambre Rétro 3D</title>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #000; }
+        canvas { display: block; }
+
+        /* --- STYLE DE L'ÉCRAN DE CHARGEMENT --- */
+        #loading-screen {
+            position: absolute;
+            z-index: 10; /* Le place au-dessus du canvas 3D */
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #000000;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: monospace; /* Petite touche rétro pour la police */
+            font-size: 24px;
+            transition: opacity 0.5s ease; /* Prépare un fondu en douceur */
+        }
+    </style>
+    <link rel="icon" href="data:,">
 </head>
 <body>
-    <div id="canvas-container"></div>
 
-    <nav class="cyber-nav">
-        <div class="brand">
-            <i data-lucide="terminal" class="text-emerald"></i>
-            <h1>PORTFOL.IO_V4</h1>
-        </div>
-        <button class="cv-btn"><i data-lucide="download"></i> CV_RECOVERY.EXE</button>
-    </nav>
+    <div id="loading-screen">CHARGEMENT EN COURS...</div>
 
-    <main class="container">
-        <section class="hero">
-            <div class="hero-text">
-                <div class="system-tag"><span>SYSTEM://</span>OVERVIEW</div>
-                <h2 class="glitch-title">DÉVELOPPEUR_<br>&_VISIONNAIRE.</h2>
-                <p class="hero-desc">Bachelor en Technologie de l'Informatique - <span class="text-emerald">EPHEC</span>...</p>
-            </div>
-            <div class="radar-container">
-                <div class="radar-circle">
-                    <div class="radar-beam"></div>
-                    <i data-lucide="terminal" class="radar-icon"></i>
-                </div>
-            </div>
-        </section>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
 
-        <section class="activities-section">
-            <div class="section-header">
-                <h2>./LOG_ACTIVITÉS_ACQUISITION</h2>
-            </div>
-            <div id="themes-grid" class="themes-grid"></div>
-        </section>
-    </main>
-
-    <script type="module" src="main.js"></script>
+    <script type="module" src="src/main.js"></script>
 </body>
 </html>
