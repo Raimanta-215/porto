@@ -1,7 +1,7 @@
 import { scene, camera, renderer, controls } from './scene.js';
 import { loadRoomAndEnvironment } from './loader.js';
 import { setupInteractions } from './interaction.js';
-
+import { cameraMovement } from './interaction.js';
 // On lance le chargement
 loadRoomAndEnvironment(scene, camera, renderer);
 
@@ -17,9 +17,23 @@ window.addEventListener('resize', () => {
 });
 
 // Boucle d'animation
+
 function animate() {
     requestAnimationFrame(animate);
-    controls.update(); 
+    controls.update();
+
+    // ✅ On vérifie si une cible a été définie dans l'objet cameraMovement
+    if (cameraMovement.target) {
+        camera.position.lerp(cameraMovement.target, 0.05);
+        controls.target.lerp(cameraMovement.lookAt, 0.05);
+
+        // ✅ Condition d'arrêt plus souple pour éviter de boucler à l'infini
+        if (camera.position.distanceTo(cameraMovement.target) < 0.1) {
+            cameraMovement.target = null; // On stoppe le mouvement
+            console.log("Arrivé à destination");
+        }
+    }
+
     renderer.render(scene, camera);
 }
 
