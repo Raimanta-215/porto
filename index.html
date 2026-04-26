@@ -2,35 +2,147 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ma Chambre Rétro 3D</title>
-    <style>
-        body { margin: 0; overflow: hidden; background-color: #000; }
-        canvas { display: block; }
-
-        /* --- STYLE DE L'ÉCRAN DE CHARGEMENT --- */
-        #loading-screen {
-            position: absolute;
-            z-index: 10; /* Le place au-dessus du canvas 3D */
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: #000000;
-            color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: monospace; /* Petite touche rétro pour la police */
-            font-size: 24px;
-            transition: opacity 0.5s ease; /* Prépare un fondu en douceur */
-        }
-    </style>
+    <title>Mon Portfolio</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="icon" href="data:,">
 </head>
 <body>
 
-    <div id="loading-screen">CHARGEMENT EN COURS...</div>
+    <div id="site-classique">
+        <header>
+            <h1>Bienvenue sur mon Portfolio</h1>
+            <p>Ici c'est mon site normal en 2D avec mes projets, mon texte, etc.</p>
+        </header>
+
+        <button id="btn-go-3d">Lancer l'expérience Rétro 3D</button>
+
+        <nav>
+            <a href="#projet">Projet Pro</a>
+            <a href="#cv">CV</a>
+            <a href="#activites">Activités</a>
+            <a href="#bilan">Bilan des Heures</a>
+        </nav>
+        
+        <section id="projet">
+            <h2>Mon Projet Professionnel</h2>
+            <p><strong>Forces :</strong> [À compléter : ex. Curiosité technique, autonomie]</p>
+            <p><strong>Faiblesses :</strong> [À compléter : ex. Prise de parole en public, gestion du stress]</p>
+            <p>Mon objectif est de devenir [Ton métier cible] car...</p>
+        </section>
+
+        <section id="cv">
+            <h2>Mon Curriculum Vitae</h2>
+            <p>Vous pouvez consulter mon CV en cliquant sur le lien ci-dessous :</p>
+            <a href="cv.pdf" target="_blank" style="color: var(--secondary); font-weight: bold;">Télécharger mon CV (PDF)</a>
+        </section>
+
+        <section id="activites">
+            <h2>Activités d'acquisition de compétences</h2>
+            
+            <div class="activity-card">
+                <h3>Thème 1 : Cybersécurité (Intro)</h3>
+                <span class="hours-tag">6 Heures</span>
+                <p><strong>Activité :</strong> CISCO Introduction to Cybersecurity (Distanciel)</p>
+                <div class="reflexion">
+                    <strong>Analyse Réflexive (Min. 1 page) :</strong> [Ici, rédige ton analyse au "Je"]
+                </div>
+            </div>
+
+            <div class="activity-card">
+                <h3>Thème 2 : Infrastructure Réseau</h3>
+                <span class="hours-tag">4 Heures</span>
+                <p><strong>Activité :</strong> Travail sur matériel physique (Réseau)</p>
+                <div class="reflexion">
+                    <strong>Analyse Réflexive :</strong> J'ai manipulé des switchs et routeurs...
+                </div>
+            </div>
+
+            <div class="activity-card">
+                <h3>Thème 3 : Compétition Cyber (Partie A)</h3>
+                <span class="hours-tag">10 Heures</span>
+                <p><strong>Activité :</strong> Cybersecurity Challenge (Hackathon 1/2)</p>
+                <div class="reflexion">
+                    <strong>Analyse Réflexive :</strong> [À compléter]
+                </div>
+            </div>
+
+            <div class="activity-card">
+                <h3>Thème 4 : Compétition Cyber (Partie B)</h3>
+                <span class="hours-tag">10 Heures</span>
+                <p><strong>Activité :</strong> Cybersecurity Challenge (Hackathon 2/2)</p>
+                <div class="reflexion">
+                    <strong>Analyse Réflexive :</strong> [À compléter]
+                </div>
+            </div>
+
+            <div class="activity-card">
+                <h3>Thème 5 : Modélisation 3D</h3>
+                <span class="hours-tag">5 Heures</span>
+                <p><strong>Activité :</strong> Formation Blender (Distanciel)</p>
+                <div class="reflexion">
+                    <strong>Analyse Réflexive :</strong> [À compléter]
+                </div>
+            </div>
+
+            <div class="activity-card">
+                <h3>Thème 6 : Développement & Innovation</h3>
+                <span class="hours-tag">10 Heures</span>
+                <p><strong>Activité :</strong> Hackathon</p>
+                <div class="reflexion">
+                    <strong>Analyse Réflexive :</strong> [À compléter]
+                </div>
+            </div>
+
+            <div class="activity-card">
+                <h3>Thème 7 : Professionnalisation</h3>
+                <span class="hours-tag">10 Heures</span>
+                <p><strong>Activité :</strong> Job Étudiant</p>
+                <div class="reflexion">
+                    <strong>Analyse Réflexive :</strong> [À compléter]
+                </div>
+            </div>
+        </section>
+
+        <section id="bilan">
+            <h2>Bilan et Calcul des Heures</h2>
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Thème / Activité</th>
+                        <th>Type</th>
+                        <th>Heures</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    </tbody>
+                <tfoot>
+                    <tr style="font-weight: bold; background: #eee;">
+                        <td colspan="2">Total Général</td>
+                        <td id="total-hours">0h</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+
+        <footer>
+            <p>Portfolio créé par [Prénom Nom] - © 2026</p>
+        </footer>
+    </div>
+    <div id="pc-interface" class="hidden-interface" style="display: none;">
+        <div class="interface-content">
+            <button id="close-pc" class="close-btn">❌ Fermer</button>
+            <h2>Mon Ordinateur</h2>
+            <p>Bienvenue sur mon portfolio ! Tu peux mettre des liens, des vidéos, etc.</p>
+        </div>
+    </div>
+
+    <div id="portable-interface" class="hidden-interface" style="display: none;">
+        <div class="interface-content">
+            <button id="close-portable" class="close-btn">❌ Fermer</button>
+            <h2>Titre pour l'Objet 7</h2>
+            <p>Contenu spécifique à cet objet...</p>
+        </div>
+    </div>
 
     <script type="importmap">
         {
@@ -40,7 +152,9 @@
             }
         }
     </script>
+    
+    <script type="module" src="src/main.js"></script> 
+    <script type="module" src="new-src/site.js"></script> 
 
-    <script type="module" src="src/main.js"></script>
 </body>
 </html>

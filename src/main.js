@@ -1,12 +1,17 @@
+import * as THREE from 'three'; // ✅ AJOUT : Indispensable pour utiliser THREE.Vector3 plus bas
 import { scene, camera, renderer, controls } from './scene.js';
 import { loadRoomAndEnvironment } from './loader.js';
-import { setupInteractions } from './interaction.js';
-import { cameraMovement } from './interaction.js';
-// On lance le chargement
+import { setupInteractions, cameraMovement } from './interaction.js';
+import { setupActionButtons } from './actions.js';
+
+// ✅ AJOUT : C'est cette ligne qui lance vraiment le téléchargement de la chambre 3D !
 loadRoomAndEnvironment(scene, camera, renderer);
 
-
+// On initialise les clics sur la 3D
 setupInteractions(scene, camera);
+
+// On initialise les clics sur les boutons HTML UNE SEULE FOIS ici
+setupActionButtons();
 
 // Gestion du redimensionnement
 window.addEventListener('resize', () => {
@@ -16,21 +21,56 @@ window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth * pixelScale, window.innerHeight * pixelScale, false);
 });
 
-// Boucle d'animation
+// ✅ CORRECTION : Gestion propre des deux boutons de fermeture
+const closePcBtn = document.getElementById('close-pc');
+if (closePcBtn) {
+    closePcBtn.addEventListener('click', () => {
+        document.getElementById('pc-interface').style.display = 'none';
+        
+        // ✅ LA CORRECTION EST LÀ : On vide la mémoire pour casser la boucle !
+        cameraMovement.currentObject = null; 
+        
+        cameraMovement.target = new THREE.Vector3(-15, 10, -20); // Retour à la vue globale
+    });
+}
 
+const closePortableBtn = document.getElementById('close-portable');
+if (closePortableBtn) {
+    closePortableBtn.addEventListener('click', () => {
+        document.getElementById('portable-interface').style.display = 'none';
+        
+        // ✅ ON VIDE LA MÉMOIRE ICI AUSSI
+        cameraMovement.currentObject = null; 
+        
+        cameraMovement.target = new THREE.Vector3(-15, 10, -20); // Retour à la vue globale
+    });
+}
+
+// Boucle d'animation
 function animate() {
     requestAnimationFrame(animate);
     controls.update();
 
-    // ✅ On vérifie si une cible a été définie dans l'objet cameraMovement
     if (cameraMovement.target) {
         camera.position.lerp(cameraMovement.target, 0.05);
         controls.target.lerp(cameraMovement.lookAt, 0.05);
 
-        // ✅ Condition d'arrêt plus souple pour éviter de boucler à l'infini
+        // QUAND LA CAMÉRA ARRIVE À DESTINATION
         if (camera.position.distanceTo(cameraMovement.target) < 0.1) {
-            cameraMovement.target = null; // On stoppe le mouvement
-            console.log("Arrivé à destination");
+            console.log("Arrivé devant :", cameraMovement.currentObject);
+            
+            // On affiche la page web par dessus
+            if (cameraMovement.currentObject === 'MonitorOn_MonitorOn_0') {
+                const pcInterface = document.getElementById('pc-interface');
+                if (pcInterface) pcInterface.style.display = 'flex';
+            }
+            else if (cameraMovement.currentObject === 'Object_7') {
+                const portableInterface = document.getElementById('portable-interface');
+                if (portableInterface) portableInterface.style.display = 'flex';
+            }
+            
+            // On stoppe le mouvement
+            cameraMovement.target = null; 
         }
     }
 

@@ -1,144 +1,108 @@
-:root {
-    --bg-color: #020617;
-    --emerald: #10b981;
-    --slate-400: #94a3b8;
-    --slate-900: #0f172a;
-    --border: #1e293b;
-}
+/* Le fond 3D */
+body { margin: 0; overflow: hidden; background-color: #000; }
+canvas { display: block; position: fixed; top: 0; left: 0; z-index: 1; }
 
-body {
-    margin: 0;
-    background-color: var(--bg-color);
-    color: var(--slate-400);
-    font-family: 'Courier New', Courier, monospace; /* Font Mono */
-    line-height: 1.6;
-}
-
-#canvas-container {
+/* Ton site classique par-dessus */
+#site-classique {
     position: fixed;
-    top: 0; left: 0; z-index: -1;
-}
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffff; /* Ou la couleur de ton site */
+    z-index: 100; /* Très important : au-dessus de la 3D (z-index: 1) */
+    overflow-y: auto; /* Permet de scroller si ton site est long */
+    }
 
-.content-wrapper {
-    padding: 3rem 1.5rem;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.brutalist-btn {
-    background: transparent;
-    border: 1px solid rgba(16, 185, 129, 0.2);
-    color: var(--emerald);
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    font-size: 0.75rem;
-    font-weight: bold;
-    display: flex;
+.hidden-interface {
+    display: none;
+    position: fixed; 
+    top: 0; /* ✅ Remis à 0 pour bien couvrir tout l'écran */
+    left: 0; /* ✅ Remis à 0 */
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7); 
+    z-index: 100000; 
+    justify-content: center;
     align-items: center;
-    gap: 8px;
-    transition: 0.3s;
-    margin-bottom: 3rem;
 }
 
-.brutalist-btn:hover {
-    background: rgba(16, 185, 129, 0.1);
-    color: white;
-}
-
-.terminal-card {
-    border: 1px solid var(--border);
-    background: rgba(15, 23, 42, 0.5);
-    backdrop-filter: blur(10px);
-}
-
-.status-bar {
-    border-bottom: 1px solid var(--border);
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(15, 23, 42, 0.5);
-}
-
-.title-text { color: white; font-weight: bold; text-transform: uppercase; }
-
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 2rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--border);
-}
-
-.label { font-size: 0.65rem; text-transform: uppercase; margin-bottom: 0.25rem; font-style: italic; }
-.value { color: white; font-weight: bold; margin: 0; }
-.text-emerald { color: var(--emerald); }
-
-.section-title {
-    color: var(--emerald);
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-}
-
-.italic-border {
-    border-left: 2px solid #1e293b;
-    padding-left: 1.5rem;
-    font-style: italic;
-}
-
-.reflexion-box {
-    background: rgba(16, 185, 129, 0.05);
-    border: 1px solid rgba(16, 185, 129, 0.1);
-    padding: 2rem;
-}
-
-/* Grille de thèmes */
-.themes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1px; /* Pour l'effet de bordure fine entre les cartes */
-    background-color: #1e293b; /* Couleur de la bordure */
-    border: 1px solid #1e293b;
-}
-
-.theme-card {
-    background: #020617;
-    padding: 2.5rem;
-    cursor: pointer;
+.interface-content {
+    background: #fbf8f8;
+    color: #222222; /* ✅ Texte mis en noir pour être lisible sur fond clair */
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 800px;
+    height: 70%;
+    border: 2px solid #ff8833;
     position: relative;
-    transition: all 0.3s ease;
-    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5); /* Petite ombre pour faire joli */
 }
 
-.theme-card:hover {
-    background: rgba(16, 185, 129, 0.05);
-}
-
-.theme-card::after { /* L'effet de bordure active au survol */
-    content: '';
+/* ✅ J'ai changé #close par une "classe" .close-btn pour l'utiliser plusieurs fois */
+.close-btn {
     position: absolute;
-    bottom: 0; left: 0;
-    height: 2px; width: 0;
-    background: #10b981;
-    transition: width 0.5s ease;
-    box-shadow: 0 0 10px #10b981;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    background: #ff4444; /* Fond rouge pour le voir */
+    border: none;
+    border-radius: 5px;
+    color: white; /* Texte blanc sur fond rouge */
+    font-size: 16px;
+    padding: 5px 10px;
 }
 
-.theme-card:hover::after { width: 100%; }
-
-/* Animation Radar */
-.radar-beam {
-    position: absolute;
-    top: 0; left: 50%;
-    width: 2px; height: 50%;
-    background: linear-gradient(to bottom, #10b981, transparent);
-    transform-origin: bottom;
-    animation: spin 8s linear infinite;
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #111111; /* Fond sombre */
+    z-index: 999999; /* Complètement au premier plan */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    font-family: sans-serif;
+    transition: opacity 1s ease; /* L'animation magique du fondu */
 }
 
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+#enter-btn {
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #ff8833;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s;
 }
+
+#enter-btn:hover {
+    transform: scale(1.05); /* Petit effet de zoom quand on survole */
+}
+
+.activity-card { 
+    border-left: 4px solid var(--secondary); 
+    padding: 1rem; margin: 1rem 0; 
+    background: #f9f9f9; 
+}
+
+
+.hours-tag { background: var(--secondary); color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.9rem; }
+
+.reflexion { font-style: italic; color: #555; margin-top: 10px; border-top: 1px solid #ddd; padding-top: 10px; }
+
+footer { text-align: center; padding: 2rem; background: var(--primary); color: white; margin-top: 2rem; }
+
+.summary-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+
+.summary-table th, .summary-table td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+
+.summary-table th { background: #eee; }
