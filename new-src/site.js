@@ -37,7 +37,7 @@ const portfolioActivities = [
         id: 2,
         theme: "Sécurité Informatique",
         activities: [
-            { name: "Cyber Challenge Part 1", type: "Hackathon", hours: 10 }
+            { name: "Cyber Challenge Part 1", type: "Challenge", hours: 10 }
         ],
         hours: 10,
         description: `
@@ -68,7 +68,7 @@ const portfolioActivities = [
         id: 3,
         theme: "Cybersécurité Avancée et CTF",
         activities: [
-            { name: "Cyber Challenge Part 2", type: "Hackathon", hours: 10 }
+            { name: "Cyber Challenge Part 2", type: "Challenge", hours: 10 }
         ],
         hours: 10,
         description: `
@@ -127,7 +127,7 @@ description: `
         id: 5,
         theme: "Développement et Collaboration Agile",
         activities: [
-            { name: "Hackathon (Gestion de projet)", type: "Challenge", hours: 10 }
+            { name: "Hackathon (Gestion de projet)", type: "Hackathon", hours: 10 }
         ],
         hours: 10,
 description: `
