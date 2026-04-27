@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mon Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:,">
+</head>
+<body>
+
+
+
+    <div id="loading-screen">CHARGEMENT EN COURS...</div>
+
+
+    <div>
+        <button id="retour-menu">Back </button>
+    </div>
+    
+    <div id="pc-interface" class="hidden-interface" style="display: none;">
+        <div class="interface-content">
+            <button id="close-pc" class="close-btn">❌ Fermer</button>
+            <h2>Mon Ordinateur</h2>
+            <p>Bienvenue sur mon portfolio ! Tu peux mettre des liens, des vidéos, etc.</p>
+        </div>
+    </div>
+
+    <div id="portable-interface" class="hidden-interface" style="display: none;">
+        <div class="interface-content">
+            <button id="close-portable" class="close-btn">❌ Fermer</button>
+            <h2>Titre pour l'Objet 7</h2>
+            <p>Contenu spécifique à cet objet...</p>
+        </div>
+    </div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+    
+    <script type="module" src="src/main.js"></script> 
+
+</body>
+</html>

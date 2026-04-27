@@ -2,7 +2,8 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Mon Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portfolio | Technologies de l'Informatique</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="data:,">
 </head>
@@ -11,10 +12,12 @@
     <div id="site-classique">
         <header>
             <h1>Bienvenue sur mon Portfolio</h1>
-            <p>Ici c'est mon site normal en 2D avec mes projets, mon texte, etc.</p>
+            <p>Étudiant en Technologies de l'Informatique à l'EPHEC</p>
         </header>
 
-        <button id="btn-go-3d">Lancer l'expérience Rétro 3D</button>
+        <div style="text-align: center; margin: 20px;">
+            <a href="retro.html" id="btn-go-3d" class="btn">Lancer l'expérience Rétro 3D</a>
+        </div>
 
         <nav>
             <a href="#projet">Projet Pro</a>
@@ -25,82 +28,107 @@
         
         <section id="projet">
             <h2>Mon Projet Professionnel</h2>
-            <p><strong>Forces :</strong> [À compléter : ex. Curiosité technique, autonomie]</p>
-            <p><strong>Faiblesses :</strong> [À compléter : ex. Prise de parole en public, gestion du stress]</p>
-            <p>Mon objectif est de devenir [Ton métier cible] car...</p>
+            <div class="card">
+                <p><strong>Forces :</strong> Curiosité technique, autonomie, capacité d'analyse réseau.</p>
+                <p><strong>Faiblesses :</strong> Prise de parole en public (à travailler via les hackathons).</p>
+                <p><strong>Objectif :</strong> Rester dans le domaine de la cybersécurité et telecommunications.</p>
+            </div>
         </section>
 
         <section id="cv">
             <h2>Mon Curriculum Vitae</h2>
-            <p>Vous pouvez consulter mon CV en cliquant sur le lien ci-dessous :</p>
-            <a href="cv.pdf" target="_blank" style="color: var(--secondary); font-weight: bold;">Télécharger mon CV (PDF)</a>
+            <p>Consultez mon parcours académique et professionnel :</p>
+            <a href="cv.pdf" target="_blank" class="cv-link">📥 Télécharger mon CV (PDF)</a>
         </section>
 
         <section id="activites">
             <h2>Activités d'acquisition de compétences</h2>
+            <p class="info-note"><i>Chaque thème est limité à un maximum de 10 heures comptabilisées.</i></p>
             
-            <div class="activity-card">
-                <h3>Thème 1 : Cybersécurité (Intro)</h3>
-                <span class="hours-tag">6 Heures</span>
-                <p><strong>Activité :</strong> CISCO Introduction to Cybersecurity (Distanciel)</p>
-                <div class="reflexion">
-                    <strong>Analyse Réflexive (Min. 1 page) :</strong> [Ici, rédige ton analyse au "Je"]
+            <details class="activity-card" id="theme-1">
+                <summary>Thème 1 : Infrastructures Réseaux et Systèmes</summary>
+                <div class="details-content">
+                    <span class="hours-tag">10 Heures</span>
+                    <p><strong>Activités :</strong> CISCO Intro to Cybersecurity (11/2023) & Labos Matériel Physique (04/2024)</p>
+                    <div class="reflexion">
+                        <strong>Analyse Réflexive :</strong>
+                        <p id="contenu-reflexion-1" class="text-reflexion"></p>
+                    </div>
                 </div>
-            </div>
+            </details>
 
-            <div class="activity-card">
-                <h3>Thème 2 : Infrastructure Réseau</h3>
-                <span class="hours-tag">4 Heures</span>
-                <p><strong>Activité :</strong> Travail sur matériel physique (Réseau)</p>
-                <div class="reflexion">
-                    <strong>Analyse Réflexive :</strong> J'ai manipulé des switchs et routeurs...
+            <details class="activity-card" id="theme-2">
+                <summary>Thème 2 : Sécurité Informatique </summary>
+                <div class="details-content">
+                    <span class="hours-tag">10 Heures</span>
+                    <p><strong>Activité :</strong> Cyber Challenge Part 1 (03/2023)</p>
+                    <div class="reflexion">
+                        <strong>Analyse Réflexive :</strong> 
+                        <p id="contenu-reflexion-2" class="text-reflexion"></p>
+                    </div>
                 </div>
-            </div>
+            </details>
 
-            <div class="activity-card">
-                <h3>Thème 3 : Compétition Cyber (Partie A)</h3>
-                <span class="hours-tag">10 Heures</span>
-                <p><strong>Activité :</strong> Cybersecurity Challenge (Hackathon 1/2)</p>
-                <div class="reflexion">
-                    <strong>Analyse Réflexive :</strong> [À compléter]
+            <details class="activity-card" id="theme-3">
+                <summary>Thème 3 : Cybersécurité Avancée </summary>
+                <div class="details-content">
+                    <span class="hours-tag">10 Heures</span>
+                    <p><strong>Activité :</strong> Cyber Challenge Part 2 (03/2026)</p>
+                    <div class="reflexion">
+                        <strong>Analyse Réflexive :</strong> 
+                        <p id="contenu-reflexion-3" class="text-reflexion"></p>
+                    </div>
                 </div>
-            </div>
+            </details>
 
-            <div class="activity-card">
-                <h3>Thème 4 : Compétition Cyber (Partie B)</h3>
-                <span class="hours-tag">10 Heures</span>
-                <p><strong>Activité :</strong> Cybersecurity Challenge (Hackathon 2/2)</p>
-                <div class="reflexion">
-                    <strong>Analyse Réflexive :</strong> [À compléter]
+            <details class="activity-card" id="theme-4">
+                <summary>Thème 4 : Cloud Computing et Services managés</summary>
+                <div class="details-content">
+                    <span class="hours-tag">6 Heures</span>
+                    <p><strong>Activités :</strong> Conférence M365/Azure (11/2025) & Open Source ULB </p>
+                    <div class="reflexion">
+                        <strong>Analyse Réflexive :</strong> 
+                        <p id="contenu-reflexion-4" class="text-reflexion"></p>
+                    </div>
                 </div>
-            </div>
+            </details>
 
-            <div class="activity-card">
-                <h3>Thème 5 : Modélisation 3D</h3>
-                <span class="hours-tag">5 Heures</span>
-                <p><strong>Activité :</strong> Formation Blender (Distanciel)</p>
-                <div class="reflexion">
-                    <strong>Analyse Réflexive :</strong> [À compléter]
+            <details class="activity-card" id="theme-5">
+                <summary>Thème 5 : Développement et Collaboration Agile</summary>
+                <div class="details-content">
+                    <span class="hours-tag">10 Heures</span>
+                    <p><strong>Activité :</strong> Hackathon (Hey - BeCentral 03/2025) </p>
+                    <div class="reflexion">
+                        <strong>Analyse Réflexive :</strong> 
+                        <p id="contenu-reflexion-5" class="text-reflexion"></p>
+                    </div>
                 </div>
-            </div>
+            </details>
 
-            <div class="activity-card">
-                <h3>Thème 6 : Développement & Innovation</h3>
-                <span class="hours-tag">10 Heures</span>
-                <p><strong>Activité :</strong> Hackathon</p>
-                <div class="reflexion">
-                    <strong>Analyse Réflexive :</strong> [À compléter]
+            <details class="activity-card" id="theme-6">
+                <summary>Thème 6 : Infographie et Technologies Multimédia</summary>
+                <div class="details-content">
+                    <span class="hours-tag">5 Heures</span>
+                    <p><strong>Activité :</strong> Formation Blender 3D</p>
+                    <div class="reflexion">
+                        <strong>Analyse Réflexive :</strong> 
+                        <p id="contenu-reflexion-6" class="text-reflexion"></p>
+                    </div>
                 </div>
-            </div>
+            </details>
 
-            <div class="activity-card">
-                <h3>Thème 7 : Professionnalisation</h3>
-                <span class="hours-tag">10 Heures</span>
-                <p><strong>Activité :</strong> Job Étudiant</p>
-                <div class="reflexion">
-                    <strong>Analyse Réflexive :</strong> [À compléter]
+            <details class="activity-card" id="theme-7">
+                <summary>Thème 7 : Soft Skills et Éthique Professionnelle</summary>
+                <div class="details-content">
+                    <span class="hours-tag">10 Heures</span>
+                    <p><strong>Activités :</strong> Conférence Boxho & Job Étudiant</p>
+                    <div class="reflexion">
+                        <strong>Analyse Réflexive :</strong> 
+                        <p id="contenu-reflexion-7" class="text-reflexion"></p>
+                    </div>
                 </div>
-            </div>
+            </details>
+
         </section>
 
         <section id="bilan">
@@ -108,7 +136,8 @@
             <table class="summary-table">
                 <thead>
                     <tr>
-                        <th>Thème / Activité</th>
+                        <th>Thème</th>
+                        <th>Activités détaillées</th>
                         <th>Type</th>
                         <th>Heures</th>
                     </tr>
@@ -116,8 +145,8 @@
                 <tbody id="table-body">
                     </tbody>
                 <tfoot>
-                    <tr style="font-weight: bold; background: #eee;">
-                        <td colspan="2">Total Général</td>
+                    <tr class="total-row">
+                        <td colspan="3">Total Validé (Max 10h/thème)</td>
                         <td id="total-hours">0h</td>
                     </tr>
                 </tfoot>
@@ -125,22 +154,15 @@
         </section>
 
         <footer>
-            <p>Portfolio créé par [Prénom Nom] - © 2026</p>
+            <p>Portfolio créé par [Ton Prénom Nom] - © 2026 - EPHEC TI</p>
         </footer>
     </div>
+
     <div id="pc-interface" class="hidden-interface" style="display: none;">
         <div class="interface-content">
             <button id="close-pc" class="close-btn">❌ Fermer</button>
             <h2>Mon Ordinateur</h2>
-            <p>Bienvenue sur mon portfolio ! Tu peux mettre des liens, des vidéos, etc.</p>
-        </div>
-    </div>
-
-    <div id="portable-interface" class="hidden-interface" style="display: none;">
-        <div class="interface-content">
-            <button id="close-portable" class="close-btn">❌ Fermer</button>
-            <h2>Titre pour l'Objet 7</h2>
-            <p>Contenu spécifique à cet objet...</p>
+            <p>Ici vous pouvez afficher des détails interactifs du projet.</p>
         </div>
     </div>
 
@@ -153,7 +175,6 @@
         }
     </script>
     
-    <script type="module" src="src/main.js"></script> 
     <script type="module" src="new-src/site.js"></script> 
 
 </body>

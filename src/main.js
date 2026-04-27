@@ -21,6 +21,12 @@ window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth * pixelScale, window.innerHeight * pixelScale, false);
 });
 
+document.getElementById('retour-menu').addEventListener('click', () => {
+    console.log("Bouton de retour cliqué, redirection vers le menu principal...");
+    history.back();
+    
+});
+
 // ✅ CORRECTION : Gestion propre des deux boutons de fermeture
 const closePcBtn = document.getElementById('close-pc');
 if (closePcBtn) {
