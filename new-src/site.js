@@ -205,34 +205,64 @@ description: `
 ];
 
 // --- AFFICHAGE DANS LE TABLEAU ---
-const body = document.getElementById('table-body');
-let totalValide = 0;
+document.addEventListener('DOMContentLoaded', () => {
+    const body = document.getElementById('table-body');
+    const totalElement = document.getElementById('total-hours');
+    let totalValide = 0;
 
-portfolioActivities.forEach(item => {
-    // On boucle sur les activités de chaque thème pour remplir le tableau
-    item.activities.forEach(act => {
-        const row = `<tr>
-            <td>${item.theme}</td>
-            <td>${act.name}</td>
-            <td>${act.type}</td>
-            <td>${act.hours}h</td>
-        </tr>`;
-        if (body) body.innerHTML += row;
+    // Injection des activités dans le tableau
+    if (body) {
+        portfolioActivities.forEach(item => {
+            item.activities.forEach(act => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.theme}</td>
+                    <td>${act.name}</td>
+                    <td>${act.type}</td>
+                    <td>${act.hours}h</td>
+                `;
+                body.appendChild(row);
+            });
+            
+            // Calcul du total en respectant le plafond de 10h par thème
+            totalValide += Math.min(item.hours, 10);
+        });
+    }
+
+    // Affichage du total
+    if (totalElement) {
+        totalElement.textContent = totalValide + "h";
+    }
+
+    // Injecter les analyses réflexives dans les éléments HTML
+    portfolioActivities.forEach(item => {
+        const reflexionEl = document.getElementById(`contenu-reflexion-${item.id}`);
+        if (reflexionEl && item.description) {
+            // Extraire le texte après "Analyse réflexive" jusqu'au prochain <h3>
+            const parts = item.description.split('<h3>');
+            parts.forEach(part => {
+                    const text = portfolioActivities[item.id - 1]?.description;
+                    if (text && text.length > 10) {
+                        reflexionEl.innerHTML = text;
+                    }
+                }
+            );
+        }
     });
-    
-    // Calcul du total en respectant le plafond de 10h par thème
-    totalValide += Math.min(item.hours, 10);
+
+    // Message console
+    console.log("%c Port Scan: OK | Firewall: ACTIVE | Connection: SECURE", "color: #00ff00; font-weight: bold; background: #000; padding: 5px;");
 });
 
-const totalElement = document.getElementById('total-hours');
-if (totalElement) totalElement.innerText = totalValide + "h";
-
-// --- INJECTION DES ANALYSES RÉFLEXIVES ---
-// On utilise une boucle pour remplir les contenus automatiquement
-portfolioActivities.forEach(item => {
-    const elementId = `contenu-reflexion-${item.id}`;
-    const element = document.getElementById(elementId);
-    if (element) {
-        element.innerHTML = item.description;
-    }
+// --- CHAT GIF BOT ---
+document.addEventListener('DOMContentLoaded', () => {
+    const chatContainer = document.createElement('div');
+    chatContainer.id = 'chat-bot';
+    chatContainer.innerHTML = `
+        <a href="retro.html" class="chat-link">
+            <div class="chat-message">Passe en mode retro</div>
+            <img src="img/gifCat.gif" alt="Chat" class="chat-gif">
+        </a>
+    `;
+    document.body.appendChild(chatContainer);
 });

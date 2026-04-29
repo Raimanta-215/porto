@@ -3,47 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Portfolio | Technologies de l'Informatique</title>
+    <title>Portfolio IT | Spécialisation Cybersécurité & Télécoms</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="data:,">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-
     <div id="site-classique">
         <header>
-            <h1>Bienvenue sur mon Portfolio</h1>
-            <p>Étudiant en Technologies de l'Informatique à l'EPHEC</p>
+            <p class="tagline">MACEDON RAISA</p>
+            <h1>Portfolio </h1>
+            <p>Spécialisation : <strong>Cybersécurité & Télécoms</strong></p>
         </header>
 
-        <div style="text-align: center; margin: 20px;">
-            <a href="retro.html" id="btn-go-3d" class="btn">Lancer l'expérience Rétro 3D</a>
-        </div>
-
         <nav>
-            <a href="#projet">Projet Pro</a>
-            <a href="#cv">CV</a>
+            <a href="#projet">Dashboard</a>
             <a href="#activites">Activités</a>
-            <a href="#bilan">Bilan des Heures</a>
+            <a href="#bilan">Bilan</a>
+            <a href="retro.html">Boot 3D</a>
         </nav>
-        
+
         <section id="projet">
-            <h2>Mon Projet Professionnel</h2>
-            <div class="card">
-                <p><strong>Forces :</strong> Curiosité technique, autonomie, capacité d'analyse réseau.</p>
-                <p><strong>Faiblesses :</strong> Prise de parole en public (à travailler via les hackathons).</p>
-                <p><strong>Objectif :</strong> Rester dans le domaine de la cybersécurité et telecommunications.</p>
+            <h2>À Propos</h2>
+            <div class="grid-container">
+                <div class="card" style="--index: 0">
+                    <h3>Compétences Techniques</h3>
+                    <div class="skills-grid">
+                        <span>Network Analysis</span>
+                        <span>Cyber Defense</span>
+                        <span>Sécurité Infra</span>
+                    </div>
+                    <p><strong>Objectif :</strong> Devenir expert en infrastructure sécurisée.</p>
+                </div>
+                <div class="card" style="--index: 1">
+                    <h3>Parcours</h3>
+                    <div class="skills-grid">
+                        <span>EPHEC TI</span>
+                        <span>BA3</span>
+                    </div>
+                    <p><strong>Formation :</strong> Technologies de l'Informatique</p>
+               
+                    <a href="cv.pdf" download="CV_MACEDON_Raisa.pdf" class="download-btn">
+                        <span>Télécharger mon CV</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    </a>
+                </div>
             </div>
         </section>
 
-        <section id="cv">
-            <h2>Mon Curriculum Vitae</h2>
-            <p>Consultez mon parcours académique et professionnel :</p>
-            <a href="cv.pdf" target="_blank" class="cv-link">📥 Télécharger mon CV (PDF)</a>
-        </section>
-
         <section id="activites">
-            <h2>Activités d'acquisition de compétences</h2>
-            <p class="info-note"><i>Chaque thème est limité à un maximum de 10 heures comptabilisées.</i></p>
+            <h2>Activités d'Acquisition de Compétences</h2>
+            <p class="info-note">Chaque thème est limité à un maximum de 10 heures comptabilisées.</p>
             
             <details class="activity-card" id="theme-1">
                 <summary>Thème 1 : Infrastructures Réseaux et Systèmes</summary>
@@ -51,44 +63,44 @@
                     <span class="hours-tag">10 Heures</span>
                     <p><strong>Activités :</strong> CISCO Intro to Cybersecurity (11/2023) & Labos Matériel Physique (04/2024)</p>
                     <div class="reflexion">
-                        <strong>Analyse Réflexive :</strong>
-                        <p id="contenu-reflexion-1" class="text-reflexion"></p>
+                        <strong>Analyse Réflexive</strong>
+                        <p id="contenu-reflexion-1"></p>
                     </div>
                 </div>
             </details>
 
             <details class="activity-card" id="theme-2">
-                <summary>Thème 2 : Sécurité Informatique </summary>
+                <summary>Thème 2 : Sécurité Informatique</summary>
                 <div class="details-content">
                     <span class="hours-tag">10 Heures</span>
                     <p><strong>Activité :</strong> Cyber Challenge Part 1 (03/2023)</p>
                     <div class="reflexion">
-                        <strong>Analyse Réflexive :</strong> 
-                        <p id="contenu-reflexion-2" class="text-reflexion"></p>
+                        <strong>Analyse Réflexive</strong>
+                        <p id="contenu-reflexion-2"></p>
                     </div>
                 </div>
             </details>
 
             <details class="activity-card" id="theme-3">
-                <summary>Thème 3 : Cybersécurité Avancée </summary>
+                <summary>Thème 3 : Cybersécurité Avancée</summary>
                 <div class="details-content">
                     <span class="hours-tag">10 Heures</span>
                     <p><strong>Activité :</strong> Cyber Challenge Part 2 (03/2026)</p>
                     <div class="reflexion">
-                        <strong>Analyse Réflexive :</strong> 
-                        <p id="contenu-reflexion-3" class="text-reflexion"></p>
+                        <strong>Analyse Réflexive</strong>
+                        <p id="contenu-reflexion-3"></p>
                     </div>
                 </div>
             </details>
 
             <details class="activity-card" id="theme-4">
-                <summary>Thème 4 : Cloud Computing et Services managés</summary>
+                <summary>Thème 4 : Cloud Computing et Services Managés</summary>
                 <div class="details-content">
                     <span class="hours-tag">6 Heures</span>
-                    <p><strong>Activités :</strong> Conférence M365/Azure (11/2025) & Open Source ULB </p>
+                    <p><strong>Activités :</strong> Conférence M365/Azure (11/2025) & Open Source ULB</p>
                     <div class="reflexion">
-                        <strong>Analyse Réflexive :</strong> 
-                        <p id="contenu-reflexion-4" class="text-reflexion"></p>
+                        <strong>Analyse Réflexive</strong>
+                        <p id="contenu-reflexion-4"></p>
                     </div>
                 </div>
             </details>
@@ -97,10 +109,10 @@
                 <summary>Thème 5 : Développement et Collaboration Agile</summary>
                 <div class="details-content">
                     <span class="hours-tag">10 Heures</span>
-                    <p><strong>Activité :</strong> Hackathon (Hey - BeCentral 03/2025) </p>
+                    <p><strong>Activité :</strong> Hackathon (Hey - BeCentral 03/2025)</p>
                     <div class="reflexion">
-                        <strong>Analyse Réflexive :</strong> 
-                        <p id="contenu-reflexion-5" class="text-reflexion"></p>
+                        <strong>Analyse Réflexive</strong>
+                        <p id="contenu-reflexion-5"></p>
                     </div>
                 </div>
             </details>
@@ -111,8 +123,8 @@
                     <span class="hours-tag">5 Heures</span>
                     <p><strong>Activité :</strong> Formation Blender 3D</p>
                     <div class="reflexion">
-                        <strong>Analyse Réflexive :</strong> 
-                        <p id="contenu-reflexion-6" class="text-reflexion"></p>
+                        <strong>Analyse Réflexive</strong>
+                        <p id="contenu-reflexion-6"></p>
                     </div>
                 </div>
             </details>
@@ -123,12 +135,11 @@
                     <span class="hours-tag">10 Heures</span>
                     <p><strong>Activités :</strong> Conférence Boxho & Job Étudiant</p>
                     <div class="reflexion">
-                        <strong>Analyse Réflexive :</strong> 
-                        <p id="contenu-reflexion-7" class="text-reflexion"></p>
+                        <strong>Analyse Réflexive</strong>
+                        <p id="contenu-reflexion-7"></p>
                     </div>
                 </div>
             </details>
-
         </section>
 
         <section id="bilan">
@@ -142,8 +153,7 @@
                         <th>Heures</th>
                     </tr>
                 </thead>
-                <tbody id="table-body">
-                    </tbody>
+                <tbody id="table-body"></tbody>
                 <tfoot>
                     <tr class="total-row">
                         <td colspan="3">Total Validé (Max 10h/thème)</td>
@@ -154,28 +164,10 @@
         </section>
 
         <footer>
-            <p>Portfolio créé par [Ton Prénom Nom] - © 2026 - EPHEC TI</p>
+            <p>Portfolio créé par MACEDON Raisa — © 2026 — EPHEC TI</p>
         </footer>
     </div>
 
-    <div id="pc-interface" class="hidden-interface" style="display: none;">
-        <div class="interface-content">
-            <button id="close-pc" class="close-btn">❌ Fermer</button>
-            <h2>Mon Ordinateur</h2>
-            <p>Ici vous pouvez afficher des détails interactifs du projet.</p>
-        </div>
-    </div>
-
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
-            }
-        }
-    </script>
-    
-    <script type="module" src="new-src/site.js"></script> 
-
+    <script type="module" src="new-src/site.js"></script>
 </body>
 </html>

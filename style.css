@@ -1,186 +1,558 @@
 /* =========================================
-   VARIABLES DE COULEURS (FACILES À CHANGER)
+   PALETTE DE COULEURS PROFESSIONNELLE
    ========================================= */
 :root {
-    --primary: #2c3e50;      /* Bleu nuit élégant */
-    --secondary: #140d3b;    /* Ton bleu dynamique */
-    --bg-color: #f4f7f6;     /* Fond très légèrement gris pour faire ressortir les cartes blanches */
-    --text-dark: #333333;
-    --text-light: #777777;
-    --card-bg: #ffffff;
+    --primary: #0f172a;        /* Bleu nuit profond */
+    --secondary: #1e293b;      /* Gris ardoise foncé */
+    --tertiary: #334155;       /* Gris moyen */
+    --accent: #0ea5e9;         /* Bleu ciel professionnel */
+    --accent-hover: #38bdf8;   /* Bleu clair */
+    --text-light: #f1f5f9;    /* Blanc cassé */
+    --text-muted: #94a3b8;     /* Gris clair */
+    --border: #475569;        /* Bordures subtiles */
+    --card-bg: #1e293b;       /* Fond des cartes */
+    --success: #10b981;       /* Vert succès */
+    --warning: #f59e0b;       /* Orange avertissement */
 }
 
 /* =========================================
-   FOND 3D & SUPERPOSITION
+   RESET & BASE
    ========================================= */
-body { margin: 0; overflow: hidden; background-color: #000; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: var(--text-dark); }
-canvas { display: block; position: fixed; top: 0; left: 0; z-index: 1; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    background-color: var(--primary);
+    color: var(--text-light);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.7;
+    overflow-x: hidden;
+}
 
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+}
 
- #loading-screen {
-            position: absolute;
-            z-index: 10; /* Le place au-dessus du canvas 3D */
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: #000000;
-            color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: monospace; /* Petite touche rétro pour la police */
-            font-size: 24px;
-            transition: opacity 0.5s ease; /* Prépare un fondu en douceur */
-        }
-#site-classique {
-    position: fixed;
+/* =========================================
+   HEADER HERO
+   ========================================= */
+header {
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
+    content: '';
+    position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--bg-color); 
-    z-index: 100;
-    overflow-y: auto;
-    padding-bottom: 50px;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(14, 165, 233, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.tagline {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    padding: 0.5rem 1.5rem;
+    background: rgba(14, 165, 233, 0.1);
+    border-radius: 50px;
+    border: 1px solid rgba(14, 165, 233, 0.3);
+}
+
+header h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, var(--text-light) 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+header p {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+header p strong {
+    color: var(--accent);
+    font-weight: 600;
 }
 
 /* =========================================
-   TYPOGRAPHIE & LAYOUT GÉNÉRAL
+   NAVIGATION
    ========================================= */
-h1, h2, h3 { color: var(--primary); }
-h1 { text-align: center; margin-top: 2rem; font-size: 2.5rem; }
-p { line-height: 1.6; }
-
 nav {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    background: white;
-    padding: 15px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    gap: 2rem;
+    padding: 1.25rem 2rem;
+    background: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(71, 85, 105, 0.3);
     position: sticky;
     top: 0;
-    z-index: 200;
+    z-index: 1000;
 }
-nav a { text-decoration: none; color: var(--primary); font-weight: bold; transition: color 0.3s; }
-nav a:hover { color: var(--secondary); }
 
-section { max-width: 800px; margin: 2rem auto; padding: 0 20px; }
-
-/* Bouton pour lancer la 3D */
-#btn-go-3d {
-    display: block; margin: 20px auto; padding: 15px 30px; font-size: 1.2rem;
-    background-color: var(--secondary); color: white; border: none;
-    border-radius: 50px; cursor: pointer; font-weight: bold;
-    box-shadow: 0 4px 15px rgba(13, 1, 60, 0.4);
+nav a {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
     transition: all 0.3s ease;
 }
-#btn-go-3d:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 6px 20px rgba(1, 14, 46, 0.6); }
 
-#retour-menu {
-    display: block; margin: 20px auto; padding: 10px 20px; font-size: 1rem;
-    background-color: var(--primary); color: white; border: none;
-    border-radius: 5px; cursor: pointer; font-weight: bold;
-    box-shadow: 0 4px 10px rgba(44, 62, 80, 0.4);
-    transition: all 0.3s ease;
-    position: relative;
-    z-index: 200;
+nav a:hover {
+    color: var(--text-light);
+    background: rgba(14, 165, 233, 0.1);
+}
+
+nav a[href="retro.html"] {
+    color: var(--accent);
+    border: 1px solid var(--accent);
+}
+
+nav a[href="retro.html"]:hover {
+    background: var(--accent);
+    color: var(--primary);
 }
 
 /* =========================================
-   CARTES D'ACTIVITÉS (DETAILS & SUMMARY)
+   SECTIONS
    ========================================= */
-details.activity-card {
-    background: var(--card-bg);
-    border-left: 5px solid var(--secondary);
-    margin: 1.5rem 0;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
+section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
 }
 
-details.activity-card:hover {
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-    transform: translateY(-2px);
-}
-
-/* Le titre cliquable (Summary) */
-details.activity-card summary {
-    padding: 1.5rem;
-    cursor: pointer;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: var(--primary);
-    list-style: none; /* Cache la flèche par défaut du navigateur */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    outline: none;
-}
-
-/* Enlever la flèche par défaut pour Webkit (Chrome/Safari) */
-details.activity-card summary::-webkit-details-marker { display: none; }
-
-/* Création d'une belle flèche animée à droite */
-details.activity-card summary::after {
-    content: '▼';
-    font-size: 0.9rem;
-    color: var(--secondary);
-    transition: transform 0.3s ease;
-}
-
-/* Quand on ouvre la carte, la flèche tourne ! */
-details[open].activity-card summary::after { transform: rotate(180deg); }
-
-/* Le contenu à l'intérieur de la carte une fois ouverte */
-.details-content {
-    padding: 0 1.5rem 1.5rem 1.5rem;
-    animation: fadeInDown 0.4s ease-out forwards;
-}
-
-@keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Le badge des heures */
-.hours-tag { 
-    background: rgba(255, 136, 51, 0.1); 
-    color: var(--secondary); 
-    padding: 4px 12px; 
-    border-radius: 20px; 
-    font-size: 0.85rem; 
-    font-weight: bold;
-    margin-bottom: 10px;
+section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+    position: relative;
     display: inline-block;
 }
 
-.reflexion { 
-    background: #fdfdfd; 
-    border-left: 3px solid #ddd; 
-    padding: 15px; 
-    margin-top: 15px; 
-    font-style: italic; 
-    color: var(--text-light); 
-    border-radius: 0 5px 5px 0;
+section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+}
+
+.info-note {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    font-style: italic;
 }
 
 /* =========================================
-   TABLEAU BILAN & FOOTER
+   CARTES D'ACTIVITÉS
    ========================================= */
-.summary-table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-radius: 8px; overflow: hidden; }
-.summary-table th, .summary-table td { padding: 15px; text-align: left; border-bottom: 1px solid #eee; }
-.summary-table th { background: var(--primary); color: white; font-weight: bold; }
-.summary-table tr:last-child td { border-bottom: none; }
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
 
-footer { text-align: center; padding: 2rem; background: var(--primary); color: white; margin-top: 4rem; }
+.card {
+    background: var(--card-bg);
+    border: 1px solid rgba(71, 85, 105, 0.5);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--success));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    border: none;
+    padding: 0;
+}
+
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.skills-grid span {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+    background: rgba(14, 165, 233, 0.15);
+    border-radius: 6px;
+    color: var(--accent);
+    font-weight: 500;
+}
+
+.card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.card p strong {
+    color: var(--accent);
+}
 
 /* =========================================
-   INTERFACES CACHÉES (3D)
+   ACTIVITÉS DÉTAILLÉES (DETAILS)
    ========================================= */
-.hidden-interface { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0, 0, 0, 0.7); z-index: 100000; justify-content: center; align-items: center; }
-.interface-content { background: #fbf8f8; color: #222222; padding: 30px; border-radius: 10px; width: 80%; max-width: 800px; height: 70%; border: 2px solid var(--secondary); position: relative; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
-.close-btn { position: absolute; top: 15px; right: 15px; cursor: pointer; background: #ff4444; border: none; border-radius: 5px; color: white; font-weight: bold; padding: 8px 15px; transition: background 0.2s; }
-.close-btn:hover { background: #cc0000; }
+details.activity-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(71, 85, 105, 0.5);
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+details.activity-card:hover {
+    border-color: rgba(14, 165, 233, 0.5);
+}
+
+details.activity-card summary {
+    padding: 1.5rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-light);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+}
+
+details.activity-card summary::-webkit-details-marker {
+    display: none;
+}
+
+details.activity-card summary::after {
+    content: '+';
+    font-size: 1.5rem;
+    color: var(--accent);
+    transition: transform 0.3s ease;
+}
+
+details[open].activity-card summary::after {
+    transform: rotate(45deg);
+}
+
+.details-content {
+    padding: 0 2rem 2rem;
+    border-top: 1px solid rgba(71, 85, 105, 0.3);
+}
+
+.hours-tag {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.4rem 1rem;
+    background: linear-gradient(135deg, var(--accent), #0d9488);
+    color: white;
+    border-radius: 50px;
+    margin-bottom: 1rem;
+}
+
+.details-content p {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+.details-content strong {
+    color: var(--text-light);
+}
+
+/* =========================================
+   REFLEXION
+   ========================================= */
+.reflexion {
+    background: rgba(15, 23, 42, 0.6);
+    border-left: 3px solid var(--accent);
+    padding: 1.5rem;
+    border-radius: 0 8px 8px 0;
+    margin-top: 1rem;
+}
+
+.reflexion strong {
+    color: var(--accent);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.reflexion p {
+    margin-top: 0.75rem;
+    color: var(--text-light);
+    font-style: normal;
+    line-height: 1.8;
+}
+
+/* =========================================
+   TABLEAU BILAN
+   ========================================= */
+.summary-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 2rem;
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.summary-table thead {
+    background: rgba(15, 23, 42, 0.8);
+}
+
+.summary-table th {
+    text-align: left;
+    padding: 1.25rem 1.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(71, 85, 105, 0.3);
+}
+
+.summary-table td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(71, 85, 105, 0.2);
+    color: var(--text-light);
+}
+
+.summary-table tr:last-child td {
+    border-bottom: none;
+}
+
+.summary-table tbody tr:hover {
+    background: rgba(14, 165, 233, 0.05);
+}
+
+.total-row {
+    background: rgba(14, 165, 233, 0.1) !important;
+}
+
+.total-row td {
+    font-weight: 700;
+    color: var(--accent) !important;
+    font-size: 1.1rem;
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: var(--secondary);
+    border-top: 1px solid rgba(71, 85, 105, 0.3);
+    margin-top: 4rem;
+}
+
+footer p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* =========================================
+   ANIMATIONS
+   ========================================= */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.card, details.activity-card {
+    animation: fadeInUp 0.6s ease forwards;
+    animation-delay: calc(var(--index, 0) * 0.1s);
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+    
+    nav {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    nav a {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    section {
+        padding: 2rem 1rem;
+    }
+    
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================
+   CHAT BOT GIF
+   ========================================= */
+#chat-bot {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.chat-link {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-decoration: none;
+}
+
+.chat-message {
+    background: var(--secondary);
+    color: var(--text-light);
+    padding: 12px 18px;
+    border-radius: 18px 18px 4px 18px;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(14, 165, 233, 0.3);
+    max-width: 220px;
+    animation: messageAppear 0.4s ease;
+}
+
+.chat-gif {
+    width: 90px;
+    height: 70px;
+    border-radius: 50%;
+    border: 3px solid var(--accent);
+    box-shadow: 0 6px 24px rgba(14, 165, 233, 0.35);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chat-gif:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 30px rgba(14, 165, 233, 0.5);
+}
+
+@keyframes messageAppear {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 1.5rem;
+    padding: 0.6rem 1.2rem;
+    background: rgba(14, 165, 233, 0.1);
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    color: var(--accent) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.download-btn:hover {
+    background: var(--accent);
+    color: var(--primary) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+}
+
+.download-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.download-btn:hover svg {
+    transform: translateY(2px);
+}
