@@ -7,7 +7,8 @@ const mouse = new THREE.Vector2();
 export const cameraMovement = {
     target: null,
     lookAt: new THREE.Vector3(),
-    currentObject: null //  NOUVEAU : On mémorise la cible actuelle
+    currentObject: null, //  NOUVEAU : On mémorise la cible actuelle
+    currentObjectPosition: new THREE.Vector3() // Position de l'objet cliqué
 };
 
 // La liste stricte des objets interactifs
@@ -24,6 +25,9 @@ export function focusOnObject(targetName, targetMesh) {
     cameraMovement.currentObject = targetName;
     const targetPos = new THREE.Vector3();
     targetMesh.getWorldPosition(targetPos);
+    
+    // Mémoriser la position de l'objet
+    cameraMovement.currentObjectPosition.copy(targetPos);
 
     // 1. La caméra REGARDE l'objet
     cameraMovement.lookAt.copy(targetPos);
@@ -32,10 +36,10 @@ export function focusOnObject(targetName, targetMesh) {
     switch (targetName) {
         case 'Object_7':
             // J'ai mis tes nouvelles coordonnées ici
-            cameraMovement.target = new THREE.Vector3(targetPos.x - 1, targetPos.y + 1, targetPos.z - 2);
+            cameraMovement.target = new THREE.Vector3(targetPos.x - 2, targetPos.y + 2, targetPos.z - 3);
             break;
         case 'MonitorOn_MonitorOn_0':
-            cameraMovement.target = new THREE.Vector3(targetPos.x + 1, targetPos.y + 1, targetPos.z - 4);
+            cameraMovement.target = new THREE.Vector3(targetPos.x + 2, targetPos.y + 2, targetPos.z - 5);
             break;
         case 'Chassi_Material004_0':
         case 'Chassi_plastico_preto010_0':
@@ -60,6 +64,8 @@ export function setupInteractions(scene, camera) {
             
             if (intersects.length > 0) {
                 const clickedMesh = intersects[0].object;
+                const clickedPos = new THREE.Vector3();
+                clickedMesh.getWorldPosition(clickedPos);
 
                 let currentObj = clickedMesh;
                 let foundInteractiveName = null;
@@ -75,11 +81,15 @@ export function setupInteractions(scene, camera) {
                 }
 
                 if (foundInteractiveName && targetMesh) {
+                    const targetPos = new THREE.Vector3();
+                    targetMesh.getWorldPosition(targetPos);
                     console.log("Cible interactive détectée (Clic 3D) :", foundInteractiveName);
+                    console.log("Position de l'objet interactif :", { x: targetPos.x.toFixed(2), y: targetPos.y.toFixed(2), z: targetPos.z.toFixed(2) });
                     // ✅ On appelle la fonction centrale !
                     focusOnObject(foundInteractiveName, targetMesh);
                 } else {
                     console.log("Clic ignoré. Objet touché :", clickedMesh.name);
+                    console.log("Position :", { x: clickedPos.x.toFixed(2), y: clickedPos.y.toFixed(2), z: clickedPos.z.toFixed(2) });
                 }
             }
         }

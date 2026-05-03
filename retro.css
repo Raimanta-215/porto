@@ -1,9 +1,21 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden; /* Empêche le scroll de la page web, très important en 3D ! */
+}
+
+canvas {
+    display: block; /* Enlève la petite marge blanche parfois présente sous les canvas */
+}
+
 /* =========================================
    ÉCRAN DE CHARGEMENT
    ========================================= */
 #loading-screen {
-    position: absolute;
-    z-index: 10;
+    position: fixed; 
+    z-index: 999999; 
     top: 0;
     left: 0;
     width: 100vw;
@@ -13,17 +25,28 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 25px; /* ✅ C'est ça qui crée l'espace entre le texte et le chat ! */
     font-family: monospace;
     font-size: 24px;
     transition: opacity 0.5s ease;
 }
 
+/* ✅ AJOUT : Règle la taille de ton GIF de chat */
+.cat-loader {
+    width: 60px; /* Ajuste cette valeur si ton chat est trop gros ou trop petit */
+    height: auto;
+    border-radius: 8px; /* Optionnel : arrondit les bords si ton GIF a un fond */
+}
 /* =========================================
    BOUTON RETOUR MENU
    ========================================= */
 #retour-menu {
-    display: block;
-    margin: 20px auto;
+    position: fixed; /* On le rend flottant */
+    top: 20px;       /* Distance depuis le haut de l'écran */
+    left: 20px;      /* Distance depuis la gauche */
+    z-index: 200;    /* Au-dessus de la 3D */
+    
+    /* Le reste de tes styles originaux[cite: 2] : */
     padding: 10px 20px;
     font-size: 1rem;
     background-color: var(--primary);
@@ -34,10 +57,7 @@
     font-weight: bold;
     box-shadow: 0 4px 10px rgba(44, 62, 80, 0.4);
     transition: all 0.3s ease;
-    position: relative;
-    z-index: 200;
 }
-
 #retour-menu:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 15px rgba(74, 75, 151, 0.5);

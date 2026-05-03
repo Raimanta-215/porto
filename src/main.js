@@ -21,11 +21,7 @@ window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth * pixelScale, window.innerHeight * pixelScale, false);
 });
 
-document.getElementById('retour-menu').addEventListener('click', () => {
-    console.log("Bouton de retour cliqué, redirection vers le menu principal...");
-    history.back();
-    
-});
+
 
 // ✅ CORRECTION : Gestion propre des deux boutons de fermeture
 const closePcBtn = document.getElementById('close-pc');
@@ -36,7 +32,9 @@ if (closePcBtn) {
         // ✅ LA CORRECTION EST LÀ : On vide la mémoire pour casser la boucle !
         cameraMovement.currentObject = null; 
         
-        cameraMovement.target = new THREE.Vector3(-15, 10, -20); // Retour à la vue globale
+        cameraMovement.target = new THREE.Vector3(-15, 10, -18); // Retour à la vue globale
+        cameraMovement.lookAt.set(-1, 4.8, -1.5);
+
     });
 }
 
@@ -48,9 +46,11 @@ if (closePortableBtn) {
         // ✅ ON VIDE LA MÉMOIRE ICI AUSSI
         cameraMovement.currentObject = null; 
         
-        cameraMovement.target = new THREE.Vector3(-15, 10, -20); // Retour à la vue globale
+        cameraMovement.target = new THREE.Vector3(-15, 10, -18); // Retour à la vue globale
+        cameraMovement.lookAt.set(-1, 4.8, -1.5);
     });
 }
+
 
 // Boucle d'animation
 function animate() {

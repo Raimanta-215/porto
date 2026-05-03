@@ -3,23 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Mon Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="retro.css">
     <link rel="icon" href="data:,">
 </head>
 <body>
 
 
 
-    <div id="loading-screen">CHARGEMENT EN COURS...</div>
-
-
-    <div>
-        <button id="retour-menu">Back </button>
+    <div id="loading-screen">
+        <span id="loading-text">CHARGEMENT EN COURS... 
+            
+        </span>
+        <img src="img/gifCat.gif" alt="Chat mignon qui charge" class="cat-loader">
+    
+        <p style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); font-size: 14px; color: #aaaaaa; text-align: center; max-width: 80vw; margin: 0;">            Le saviez-vous ? Pendant 20 ans, il était illégal de mettre des mini-jeux dans les chargements à cause d'un brevet.
+            C'est pour ça que les jeux comme Skyrim vous laissaient juste faire tourner des objets 3D !        
+        </p>
     </div>
+
+
+    
+    <a href ="index.html" id="retour-menu" class="return-btn">Retour au Menu Principal</a>
     
     <div id="pc-interface" class="hidden-interface" style="display: none;">
         <div class="interface-content">
-            <button id="close-pc" class="close-btn">❌ Fermer</button>
+            <button id="close-pc" class="close-btn"> Fermer</button>
             <h2>Mon Ordinateur</h2>
             <p>Bienvenue sur mon portfolio ! Tu peux mettre des liens, des vidéos, etc.</p>
         </div>
@@ -27,7 +35,7 @@
 
     <div id="portable-interface" class="hidden-interface" style="display: none;">
         <div class="interface-content">
-            <button id="close-portable" class="close-btn">❌ Fermer</button>
+            <button id="close-portable" class="close-btn"> Fermer</button>
             <h2>Titre pour l'Objet 7</h2>
             <p>Contenu spécifique à cet objet...</p>
         </div>
@@ -41,7 +49,6 @@
             }
         }
     </script>
-    
     <script type="module" src="src/main.js"></script> 
 
 </body>
